@@ -1,0 +1,52 @@
+stages:
+  - build
+
+ubuntu-16.04:
+  variables:
+    QCOW2_IMAGE: 'https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img'
+  stage: build
+  script:
+    - vagrant-build
+  tags:
+    - vagrant
+  except:
+    - tags
+
+ubuntu-18.04:
+  variables:
+    QCOW2_IMAGE: 'https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img'
+  stage: build
+  script:
+    - vagrant-build
+  tags:
+    - vagrant
+  except:
+    - tags
+
+release-ubuntu-16.04:
+  variables:
+    QCOW2_IMAGE: 'https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img'
+  stage: build
+  script:
+    - vagrant-build
+  artifacts:
+    paths:
+      - 'build/*'
+  tags:
+    - vagrant
+  only:
+    - tags
+
+release-ubuntu-18.04:
+  variables:
+    QCOW2_IMAGE: 'https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img'
+  stage: build
+  script:
+    - vagrant-build
+  artifacts:
+    paths:
+      - 'build/*'
+  tags:
+    - vagrant
+  only:
+    - tags
