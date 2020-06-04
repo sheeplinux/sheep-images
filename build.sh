@@ -32,7 +32,9 @@ pushd ${rootfs}
 tar czf ${workdir}/build/${image}.tar.gz *
 popd
 
-if [ -d /vagrant ]; then
+if [ -n "${TRAVIS_BUILD_DIR}" ]; then
+	mv ${workdir}/build ${TRAVIS_BUILD_DIR}
+elif [ -d /vagrant ]; then
 	mkdir /vagrant/build/
 	mv ${workdir}/build/* /vagrant/build/
 fi

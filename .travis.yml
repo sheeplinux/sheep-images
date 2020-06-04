@@ -7,5 +7,19 @@ script:
 
 matrix:
   include:
+    - env: QCOW2_IMAGE=https://cdimage.debian.org/cdimage/openstack/archive/9.11.2-20190926/debian-9.11.2-20190926-openstack-amd64.qcow2
+    - env: QCOW2_IMAGE=https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1907.qcow2
+    - env: QCOW2_IMAGE=https://download.opensuse.org/repositories/Cloud:/Images:/Leap_15.1/images/openSUSE-Leap-15.1-OpenStack.x86_64.qcow2
     - env: QCOW2_IMAGE=https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
     - env: QCOW2_IMAGE=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: EoYGytsFR1ii8X7cjSAPptTxbJfiTLtg4NbvwK7TPTwS1d2nlFJV1Vh96K/Bg3V4aMPhdgPPnLXLXs5DD11vmXw1+GcHo3cBv0jd1tZrXLOMLW77LMewohQoEdN/tnFFBV9NKowwdsunWoeXsVMsRQSvoLVOTHlUw9dzy2UVEK5F67PdlMJbbNQmWuo/URAfQ8Fss/fOUquLquafoHqjFuhqtub8fke3uqcInSKnJ0DTlGa9x6oG9IWz/Swd32FJeiBgSg9nhIlYzDgwHmS+FpiT8XoAHLvv+UpWr5lir6i4NiSqgmSlXUOd8fZCJ9l5+zldGUp3lmr8vkvv6m1557+yEQXJm0L1SoG/EnhN7GcXjaPirUuOK1HT5cvS5G1IoWy7PMzzClIfZ0iN9aV5aSq2EQM6F448Y/Sgl1+WgkOJGCxtxbHxSpgoHMEOdbav9PdF2CE/UaYgCMTvyJkwvNhdIVl8woWLSv6Ju7mUMVk24Ycq1ZVw420P638EsFfnvUwCw0QI+PTUWsYNBiXMZ4Hw7StB8FkD2YMTtxUvpiNlzT6OBdatho+2dsTl7ftwBtVb/Psui88pJqY2U/2mhw3jCAuzo6KW/7fWRgE5ELhdsLzPF4PyYa/N/aVe4WjRP+EZpSalMiBd6ObqO9tkwRU8lcSwMlSv92SZr2iHFAU=
+  file_glob: true
+  file:
+    - build/*
+  on:
+    tags: true
