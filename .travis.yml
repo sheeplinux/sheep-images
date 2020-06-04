@@ -1,0 +1,11 @@
+
+install:
+  - sudo ./prepare-build-env.sh
+
+script:
+  - sudo ./build.sh $QCOW2_IMAGE
+
+matrix:
+  include:
+    - env: QCOW2_IMAGE=https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
+    - env: QCOW2_IMAGE=https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
