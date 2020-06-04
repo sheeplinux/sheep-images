@@ -32,5 +32,7 @@ pushd ${rootfs}
 tar czf ${workdir}/build/${image}.tar.gz *
 popd
 
-mkdir /vagrant/build/
-mv ${workdir}/build/* /vagrant/build/
+if [ -d /vagrant ]; then
+	mkdir /vagrant/build/
+	mv ${workdir}/build/* /vagrant/build/
+fi
